@@ -16,23 +16,22 @@ class MenuList extends Component {
         const {RestoService} = this.props;
         RestoService.getMenuItems()
             .then(res => this.props.menuLoaded(res))
-            .catch(error => this.props.menuError());
+            .catch(() => this.props.menuError());
     }
 
     render() {
         const {menuItems, loading, error, addedToCart} = this.props;
-        if (error){
-            return <Error/>
-        }
+        // if (error){
+        //     return <Error/>
+        // }
         if (loading) {
             return <Spinner/>
         }
         const items = menuItems.map(menuItem => {
-                return (
-                    <MenuListItem 
-                        key = {menuItem.id} 
-                        menuItem = {menuItem}
-                        onAddToCart= {() => addedToCart(menuItem.id)}/>
+                return ( <MenuListItem 
+                            key = {menuItem.id} 
+                            menuItem = {menuItem }
+                            onAddToCart = {() => addedToCart(menuItem.id)}/>
                 )
             })
 
